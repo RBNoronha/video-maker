@@ -13,7 +13,7 @@
 
 Trata-se de uma POC (Prova de conceito) do projeto de código-aberto do [Filipe Deschamps](https://www.youtube.com/watch?v=kjhu1LEmRpY), onde basicamente o usuário informa algum tema de pesquisa para o vídeo, depois escolhe o filtro de entrada: "Who is", "What is" ou "The history of". Onde a API de busca no Wikipedia da [Algorithmia](https://algorithmia.com/), utilizará da Machine Learning para efetuar o resumo com base no filtro escolhido anteriormente pelo usuário. 
 
-Com o resumo salvo, a próxima etapa será extrair do conteúdo, os metadados e as "keywords" com o uso da API de [Natural Language Understanding](https://www.ibm.com/br-pt/cloud/watson-natural-language-understanding) da Inteligência Artificial Watson da IBM. 
+Com o resumo salvo, a próxima etapa será extrair do conteúdo, os metadados e as "keywords" com o uso da API de [Azure Text Analytics](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/) da Microsoft. 
 
 Após as "keywords" coletadas, serão utilizadas como base na busca das imagens, utilizando a API do Google Search/Image. Pois a ideia é lançar a imagem referenciando a legenda sobre o tema durante o vídeo.
 
@@ -27,7 +27,7 @@ Todas essas etapas: / Recolher conceito / Download Imagens / Renderização Víd
 
 Por ser uma POC, necessitará das chaves das API's utilizadas no projeto. Clicando [aqui](https://github.com/filipedeschamps/video-maker), será direcionado ao README do projeto original com os passos para configuração.
 
-Na minha adapação para ferramenta FREE, precisará das dependências:
+Na minha adaptação para ferramenta FREE, precisará das dependências:
 
 ```bash
 # Videoshow
@@ -54,9 +54,8 @@ $ npm install readline-sync
 ## Algorithmia Market Place Machine Learning
 $ npm i algorithmia
 
-# Natural Language Understanding
-$ npm i watson-developer-cloud and 
-$ npm i ibm-watson
+# Azure Text Analytics
+$ npm i azure-ai-textanalytics
 
 # Google APIs
 $ npm i googleapis
