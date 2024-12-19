@@ -1,6 +1,6 @@
 import os
 import json
-import moviepy.editor as mp
+import moviepy as mp
 from PIL import Image, ImageDraw, ImageFont
 
 def convert_all_images(content):

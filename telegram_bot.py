@@ -5,6 +5,12 @@ import schedule
 import time
 import logging
 import feedparser
+from telepot.namedtuple import InlineKeyboardMarkup, InlineKeyboardButton
+from telepot.namedtuple import ReplyKeyboardMarkup, KeyboardButton
+from telepot.loop import MessageLoop
+from telepot.hack import _noencode_filename, urllib3
+from telepot.exception import TelegramError
+from telepot.text import _apply_entities, apply_entities_as_markdown, apply_entities_as_html
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -40,7 +46,7 @@ def handle_message(msg):
             bot.sendMessage(chat_id, "The video creation process has been canceled.")
         elif command.startswith('/schedule'):
             schedule_time = command.split(' ')[1]
-            schedule.every().day.at(schedule_time).do(main.run_video_maker, command.split(' ')[2])
+            schedule.every().day.at(schedule_time).do(run_video_maker, command.split(' ')[2])
             bot.sendMessage(chat_id, f"Video creation task scheduled at {schedule_time}.")
         elif command.startswith('/customize'):
             options = command.split(' ')[1:]

@@ -1,9 +1,6 @@
 moviepy
 google-auth
 google-api-python-client
-requests
-json
-os
-googleapiclient
+google-cloud
 azure-ai-textanalytics
 telepot
