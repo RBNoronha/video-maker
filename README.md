@@ -137,6 +137,9 @@ $ pip install googleapiclient
 
 # azure-ai-textanalytics
 $ pip install azure-ai-textanalytics
+
+# telepot
+$ pip install telepot
 ```
 
 ## ScreenShots
