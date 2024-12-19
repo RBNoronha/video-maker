@@ -105,3 +105,69 @@ MIT License - Veja [LICENSE](https://opensource.org/licenses/MIT) para mais deta
 ---
 **Created by Antonino Praxedes!  👋🏻 [Get in touch!](https://www.linkedin.com/in/antoninopraxedes/)**
 
+## :information_source: How To Use
+
+Por ser uma POC, necessitará das chaves das API's utilizadas no projeto. Clicando [aqui](https://github.com/filipedeschamps/video-maker), será direcionado ao README do projeto original com os passos para configuração.
+
+Na minha adaptação para ferramenta FREE, precisará das dependências:
+
+```bash
+# moviepy
+$ pip install moviepy
+
+# google-auth
+$ pip install google-auth
+
+# google-api-python-client
+$ pip install google-api-python-client
+
+# requests
+$ pip install requests
+```
+Demais dependências utilizadas:
+
+```bash
+# json
+$ pip install json
+
+# os
+$ pip install os
+
+# googleapiclient
+$ pip install googleapiclient
+
+# azure-ai-textanalytics
+$ pip install azure-ai-textanalytics
+```
+
+## ScreenShots
+
+<p align="center">
+  <img alt="videoMaker" src="screenshots/01.png" width="90%">
+  <img alt="videoMaker" src="screenshots/02.png" width="90%">
+  <img alt="videoMaker" src="screenshots/03.png" width="90%">
+  <img alt="videoMaker" src="screenshots/04.png" width="90%">
+  <img alt="videoMaker" src="screenshots/05.png" width="90%">
+  <img alt="videoMaker" src="screenshots/06.png" width="90%">
+  <img alt="videoMaker" src="screenshots/07.png" width="90%">
+  <img alt="videoMaker" src="screenshots/08.png" width="90%">
+  <img alt="videoMaker" src="screenshots/09.png" width="90%">
+</p>
+
+<p>Check it out Youtube: https://www.youtube.com/watch?v=_Ht4KIq9mko&feature=youtu.be</p>
+
+### :recycle: Como contribuir
+
+- Fork esse repositório;
+- Crie uma branch com a sua feature: `git checkout -b my-feature`
+- Commit suas mudanças: `git commit -m 'feat: My new feature'`
+- Push a sua branch: `git push origin my-feature`
+
+
+## :memo:  License
+
+MIT License - Veja [LICENSE](https://opensource.org/licenses/MIT) para mais detalhes.
+
+---
+**Created by Antonino Praxedes!  👋🏻 [Get in touch!](https://www.linkedin.com/in/antoninopraxedes/)**
+
