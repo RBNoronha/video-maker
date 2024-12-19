@@ -5,11 +5,15 @@ import robots.video as video_robot
 import robots.youtube as youtube_robot
 import telegram_bot  # Import the telegram_bot.py file
 
+def get_video_duration():
+    return int(input("Enter the duration for each video clip (in seconds): "))
+
 def main():
     input_robot.run()
     text_robot.run()
     image_robot.run()
-    video_robot.run()
+    video_duration = get_video_duration()
+    video_robot.run(video_duration)
     youtube_robot.run()
     telegram_bot  # Run the Telegram bot
 

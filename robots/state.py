@@ -9,3 +9,7 @@ def save(content):
 def load():
     with open(content_file_path, 'r') as content_file:
         return json.load(content_file)
+
+content = load()
+content['videoDuration'] = 5  # Default duration if not specified
+save(content)

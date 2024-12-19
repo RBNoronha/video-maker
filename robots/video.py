@@ -37,13 +37,19 @@ def create_youtube_thumbnail():
     image = Image.open(input_file)
     image.save(output_file)
 
+def get_clip_duration(content, sentence_index):
+    if "videoDuration" in content:
+        return content["videoDuration"]
+    return 5
+
 def render_video_with_moviepy(content):
     clips = []
     for sentence_index in range(len(content["sentences"])):
         image_path = f"./content/{sentence_index}-converted.png"
         sentence_image_path = f"./content/{sentence_index}-sentence.png"
-        image_clip = mp.ImageClip(image_path).set_duration(5)
-        sentence_clip = mp.ImageClip(sentence_image_path).set_duration(5)
+        duration = get_clip_duration(content, sentence_index)
+        image_clip = mp.ImageClip(image_path).set_duration(duration)
+        sentence_clip = mp.ImageClip(sentence_image_path).set_duration(duration)
         final_clip = mp.CompositeVideoClip([image_clip, sentence_clip.set_position(("center", "bottom"))])
         clips.append(final_clip)
 
