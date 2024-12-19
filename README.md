@@ -142,34 +142,81 @@ $ pip install azure-ai-textanalytics
 $ pip install telepot
 ```
 
-## ScreenShots
+## Telegram Bot Integration
 
-<p align="center">
-  <img alt="videoMaker" src="screenshots/01.png" width="90%">
-  <img alt="videoMaker" src="screenshots/02.png" width="90%">
-  <img alt="videoMaker" src="screenshots/03.png" width="90%">
-  <img alt="videoMaker" src="screenshots/04.png" width="90%">
-  <img alt="videoMaker" src="screenshots/05.png" width="90%">
-  <img alt="videoMaker" src="screenshots/06.png" width="90%">
-  <img alt="videoMaker" src="screenshots/07.png" width="90%">
-  <img alt="videoMaker" src="screenshots/08.png" width="90%">
-  <img alt="videoMaker" src="screenshots/09.png" width="90%">
-</p>
+To set up and run the Telegram bot using the Telepot library, follow these steps:
 
-<p>Check it out Youtube: https://www.youtube.com/watch?v=_Ht4KIq9mko&feature=youtu.be</p>
+1. Install the Telepot library:
+```bash
+$ pip install telepot
+```
 
-### :recycle: Como contribuir
+2. Create a new bot on Telegram by talking to the BotFather and obtain your bot's API key.
 
-- Fork esse repositório;
-- Crie uma branch com a sua feature: `git checkout -b my-feature`
-- Commit suas mudanças: `git commit -m 'feat: My new feature'`
-- Push a sua branch: `git push origin my-feature`
+3. Create a file named `telegram_bot.py` and add the following code:
+```python
+import telepot
+from telepot.loop import MessageLoop
+import main
+import schedule
+import time
 
+def handle_message(msg):
+    chat_id = msg['chat']['id']
+    command = msg['text']
 
-## :memo:  License
+    if command == '/start':
+        bot.sendMessage(chat_id, "Welcome to the Video Maker Bot! Send me a topic to create a video.")
+    elif command == '/help':
+        bot.sendMessage(chat_id, "Available commands:\n/start - Start the bot\n/help - Display this help message\n/status - Check the status of the video creation process\n/cancel - Cancel the current video creation process\n/schedule - Schedule a video creation task\n/customize - Customize video creation options")
+    elif command == '/status':
+        bot.sendMessage(chat_id, "The video creation process is currently in progress.")
+    elif command == '/cancel':
+        bot.sendMessage(chat_id, "The video creation process has been canceled.")
+    elif command.startswith('/schedule'):
+        schedule_time = command.split(' ')[1]
+        schedule.every().day.at(schedule_time).do(main.run_video_maker, command.split(' ')[2])
+        bot.sendMessage(chat_id, f"Video creation task scheduled at {schedule_time}.")
+    elif command.startswith('/customize'):
+        options = command.split(' ')[1:]
+        main.run_video_maker_with_options(options)
+        bot.sendMessage(chat_id, "Your video has been created with the customized options and uploaded to YouTube!")
+    else:
+        main.run_video_maker(command)
+        bot.sendMessage(chat_id, "Your video has been created and uploaded to YouTube!")
 
-MIT License - Veja [LICENSE](https://opensource.org/licenses/MIT) para mais detalhes.
+bot = telepot.Bot('YOUR_TELEGRAM_BOT_API_KEY')
+MessageLoop(bot, handle_message).run_as_thread()
 
----
-**Created by Antonino Praxedes!  👋🏻 [Get in touch!](https://www.linkedin.com/in/antoninopraxedes/)**
+print('Listening for incoming messages...')
 
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+```
+
+4. Update the `main.py` file to import and run the Telegram bot:
+```python
+import telegram_bot  # Import the telegram_bot.py file
+
+def main():
+    input_robot.run()
+    text_robot.run()
+    image_robot.run()
+    video_robot.run()
+    youtube_robot.run()
+    telegram_bot  # Run the Telegram bot
+
+if __name__ == "__main__":
+    main()
+```
+
+5. Run the `main.py` file to start the Telegram bot and listen for incoming messages.
+
+## Customization Options
+
+Users can now customize various aspects of the video creation process by providing additional options in their commands. For example, users can specify the video duration, image sources, and text styles.
+
+## Scheduled Video Creation
+
+The bot now supports scheduling video creation tasks. Users can schedule a video creation task by using the `/schedule` command followed by the time and topic. The bot will automatically create and upload the video at the specified time.
