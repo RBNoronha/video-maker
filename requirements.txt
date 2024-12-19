@@ -1,0 +1,9 @@
+moviepy
+google-auth
+google-api-python-client
+requests
+json
+os
+googleapiclient
+azure-ai-textanalytics
+telepot
