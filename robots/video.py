@@ -18,16 +18,20 @@ def convert_image(sentence_index):
 
 def create_all_sentence_images(content):
     for sentence_index, sentence in enumerate(content["sentences"]):
-        create_sentence_image(sentence_index, sentence["text"])
+        create_sentence_image(sentence_index, sentence["text"], content.get("text_styles", {}))
 
-def create_sentence_image(sentence_index, sentence_text):
+def create_sentence_image(sentence_index, sentence_text, text_styles):
     output_file = f"./content/{sentence_index}-sentence.png"
     width, height = 1920, 400
 
     image = Image.new("RGB", (width, height), color=(0, 0, 0))
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype("arial.ttf", 40)
-    draw.text((10, 10), sentence_text, font=font, fill=(255, 255, 255))
+    font_path = text_styles.get("font", "arial.ttf")
+    font_size = text_styles.get("size", 40)
+    font_color = text_styles.get("color", (255, 255, 255))
+    font_position = text_styles.get("position", (10, 10))
+    font = ImageFont.truetype(font_path, font_size)
+    draw.text(font_position, sentence_text, font=font, fill=font_color)
     image.save(output_file)
 
 def create_youtube_thumbnail():
@@ -39,11 +43,13 @@ def create_youtube_thumbnail():
 
 def render_video_with_moviepy(content):
     clips = []
+    default_duration = content.get("default_duration", 5)
     for sentence_index in range(len(content["sentences"])):
         image_path = f"./content/{sentence_index}-converted.png"
         sentence_image_path = f"./content/{sentence_index}-sentence.png"
-        image_clip = mp.ImageClip(image_path).set_duration(5)
-        sentence_clip = mp.ImageClip(sentence_image_path).set_duration(5)
+        duration = content["sentences"][sentence_index].get("duration", default_duration)
+        image_clip = mp.ImageClip(image_path).set_duration(duration)
+        sentence_clip = mp.ImageClip(sentence_image_path).set_duration(duration)
         final_clip = mp.CompositeVideoClip([image_clip, sentence_clip.set_position(("center", "bottom"))])
         clips.append(final_clip)
 
