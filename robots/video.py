@@ -18,16 +18,16 @@ def convert_image(sentence_index):
 
 def create_all_sentence_images(content):
     for sentence_index, sentence in enumerate(content["sentences"]):
-        create_sentence_image(sentence_index, sentence["text"])
+        create_sentence_image(sentence_index, sentence["text"], content)
 
-def create_sentence_image(sentence_index, sentence_text):
+def create_sentence_image(sentence_index, sentence_text, content):
     output_file = f"./content/{sentence_index}-sentence.png"
     width, height = 1920, 400
 
     image = Image.new("RGB", (width, height), color=(0, 0, 0))
     draw = ImageDraw.Draw(image)
-    font = ImageFont.truetype("arial.ttf", 40)
-    draw.text((10, 10), sentence_text, font=font, fill=(255, 255, 255))
+    font = ImageFont.truetype(content.get("font", "arial.ttf"), content.get("fontSize", 40))
+    draw.text((content.get("textPosition", (10, 10))), sentence_text, font=font, fill=content.get("textColor", (255, 255, 255)))
     image.save(output_file)
 
 def create_youtube_thumbnail():
