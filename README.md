@@ -228,3 +228,11 @@ Users can now customize various aspects of the video creation process by providi
 ## Scheduled Video Creation
 
 The bot now supports scheduling video creation tasks. Users can schedule a video creation task by using the `/schedule` command followed by the time and topic. The bot will automatically create and upload the video at the specified time.
+
+## Install Required Libraries
+
+To install all the required libraries, run the following command:
+
+```bash
+pip install -r requirements.txt
+```
