@@ -13,5 +13,12 @@ def main():
     youtube_robot.run()
     telegram_bot  # Run the Telegram bot
 
+def run_video_maker_with_options(options):
+    input_robot.run()
+    text_robot.run()
+    image_robot.run()
+    video_robot.run(options)
+    youtube_robot.run()
+
 if __name__ == "__main__":
     main()
